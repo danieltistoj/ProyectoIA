@@ -35,19 +35,21 @@ def listar_red1(ruta='.'):
 		if isfile(archivo):
 			nombre = archivo.split(".")
 			if(nombre[1]=='jpg' or nombre[1]=='jpeg' or nombre[1]=='png'):
-    			##### Fresa Podrida #####	
-				if(nombre[0][0]=='FP'):
-					salidas.append([0,0,1])
-				##### Fresa Madura #####
-				elif(nombre[0][0]=='FM'):
-					salidas.append([0,1,0])
-				##### Fresa Inmadura #####
-				elif(nombre[0][0]=='FI'):
-					salidas.append([1,0,0])
-				##### Otro Objeto #####
-				elif(nombre[0][0]=='O'):
-					salidas.append([1,1,1])
+				print("primer caracter:", nombre[0][0], " segundo caracter:", nombre[0][1])
+				##### Fresa Podrida FP #####
+				if (nombre[0][0] == 'F' and nombre[0][1] == 'P'):
+					salidas.append([0, 0, 1])
+				##### Fresa Madura FM #####
+				elif (nombre[0][0] == 'F' and nombre[0][1] == 'M'):
+					salidas.append([0, 1, 0])
+				##### Fresa Inmadura  FI#####
+				elif (nombre[0][0] == 'F' and nombre[0][1] == 'I'):
+					salidas.append([1, 0, 0])
+				##### Otro Objeto  #####
+				else:
+					salidas.append([1, 1, 1])
 				lista.append(archivo)
+				print("lista:", lista)
 	return lista
 def generarEntrada():
 	entradas=[]
