@@ -11,7 +11,7 @@ def entrenamiento(inp,out,capas):
 	error_deseado = 0.0001
 	data = fann.training_data()    
 	data.set_train_data(inp,out)
-	max_iteraciones = 100000
+	max_iteraciones = 100
 	ann = fann.neural_net()
 	ann.create_sparse_array(indice_conexion, capas)# funcion que crear la red, PARAM indice y vector de neuronas por capa
 	ann.set_learning_rate(rango_aprendizaje) #funcion para insertar el rango de aprendizaje,
@@ -19,7 +19,7 @@ def entrenamiento(inp,out,capas):
 	#ann.train_on_file("and.data", max_iteraciones, 1000, error_deseado)
 	#^Entrenar la red en un archivo PARAM archivo salida, maximo de iteraciones, 
 	ann.train_on_data(data,max_iteraciones,100,error_deseado)
-	ann.save("red20.net")
+	ann.save("RedNeuronal.net")
 
 def imagenAEpisodio(imagen):
 	lista=[]
@@ -35,7 +35,7 @@ def listar_red1(ruta='.'):
 		if isfile(archivo):
 			nombre = archivo.split(".")
 			if(nombre[1]=='jpg' or nombre[1]=='jpeg' or nombre[1]=='png'):
-				print("primer caracter:", nombre[0][0], " segundo caracter:", nombre[0][1])
+				#print("primer caracter:", nombre[0][0], " segundo caracter:", nombre[0][1])
 				##### Fresa Podrida FP #####
 				if (nombre[0][0] == 'F' and nombre[0][1] == 'P'):
 					salidas.append([0, 0, 1])
@@ -49,7 +49,7 @@ def listar_red1(ruta='.'):
 				else:
 					salidas.append([1, 1, 1])
 				lista.append(archivo)
-				print("lista:", lista)
+				#print("lista:", lista)
 	return lista
 def generarEntrada():
 	entradas=[]
