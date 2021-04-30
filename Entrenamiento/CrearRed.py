@@ -8,16 +8,16 @@ salidas=[]
 def entrenamiento(inp,out,capas):
 	indice_conexion = 1 #Caracteristica de las conexiones entre capas 1 -> completamente conectada
 	rango_aprendizaje = 0.1 #Constante de aprendizaje
-	error_deseado = 0.0001
+	error_deseado = 0.0001 #Error deseado a obtener 0.01%
 	data = fann.training_data()    
 	data.set_train_data(inp,out)
-	max_iteraciones = 100
+	max_iteraciones = 100 #Número de epocas
 	ann = fann.neural_net()
-	ann.create_sparse_array(indice_conexion, capas)# funcion que crear la red, PARAM indice y vector de neuronas por capa
-	ann.set_learning_rate(rango_aprendizaje) #funcion para insertar el rango de aprendizaje,
-	ann.set_activation_function_output(fann.SIGMOID) #setear la funcion de activacion 
-	#ann.train_on_file("and.data", max_iteraciones, 1000, error_deseado)
-	#^Entrenar la red en un archivo PARAM archivo salida, maximo de iteraciones, 
+	ann.create_sparse_array(indice_conexion, capas) #Funcion que crear la red, PARAM indice y vector de neuronas por capa
+	ann.set_learning_rate(rango_aprendizaje) #Funcion para insertar el rango de aprendizaje
+	ann.set_activation_function_output(fann.SIGMOID) #Setear la funcion de activacion
+		
+	###### Entrenar la red en un archivo de salida, maximo de iteraciones ##### 
 	ann.train_on_data(data,max_iteraciones,100,error_deseado)
 	ann.save("RedNeuronal.net")
 
@@ -29,6 +29,7 @@ def imagenAEpisodio(imagen):
 				lista.append(x)
 	return lista
 
+##### Se enlista las fotografías para el entrenamiento de la red #####
 def listar_red1(ruta='.'):
 	lista=[]
 	for archivo in listdir(ruta): 
@@ -51,6 +52,7 @@ def listar_red1(ruta='.'):
 				lista.append(archivo)
 				#print("lista:", lista)
 	return lista
+##### Generamos las entradas, metiendo en una lista las fotografías ya compuestas #####
 def generarEntrada():
 	entradas=[]
 	for r in listar_red1():
@@ -58,4 +60,5 @@ def generarEntrada():
 		entradas.append(imagenAEpisodio(im))
 	return entradas
 entradas=generarEntrada()
+##### Enviamos las entradas, salidas, 7500, 5000 y 3 neuronas #####
 entrenamiento(entradas,salidas,[7500,5000,3])
