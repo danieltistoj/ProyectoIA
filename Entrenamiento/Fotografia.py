@@ -30,8 +30,9 @@ def ProcesarFoto(img):
 	        x, y, w, h = cv2.boundingRect(c)
 	        cv2.rectangle(canny, (x, y), (x + w, y + h), (200, 200, 0), 1) 
 	        crop_img = foto[y:y+h, x:x+w]
-	        lista.append(crop_img)
+	        #lista.append(crop_img)
 	        #cv2.imshow("a",crop_img)
+	lista.append(foto)
 	return lista
 	#cv2.waitKey(0)
 	#cv2.destroyAllWindows()

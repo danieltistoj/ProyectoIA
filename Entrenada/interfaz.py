@@ -31,11 +31,13 @@ class GUI(Frame):
 					messagebox.showinfo('¡ERROR!',"No se reconoce la imagen...")
 				else:
 					if ron[0]==1:
-						messagebox.showinfo('Fresa',"Fresa Madura")
+						messagebox.showinfo('Fresa',"Fresa Inmadura")
 					elif ron[1]==1:
+						messagebox.showinfo('Fresa',"Fresa Madura")
+					elif ron[2]==1:
 						messagebox.showinfo('Fresa',"Fresa Pasada")
 					else:
-						messagebox.showinfo('Fresa',"Fresa Podrida")
+						messagebox.showinfo('¡ERROR!',"La imagen no es de una fresa o no es una fresa recortada")
 		def imagenAEpisodio(imagen):
 			image = Image.open(imagen)
 			pixeles = list(image.getdata())
