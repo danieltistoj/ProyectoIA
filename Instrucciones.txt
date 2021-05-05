@@ -24,7 +24,7 @@ Como podra observar, se encuentran 2 carpetas, "Entrenada" y "Entrenamiento", pa
     Comentario 1: Esto generará imagenes en las carpetas "FresasRecortadasI", "FresasRecortadasM" y "FresasRecortadasP".
 3.- Ejecutar el archivo "Entradas.py".
     Comentario 1: Esto generará el archivo "Entrenamiento.csv".
-4.- Ejecutar el archivo "Entrenamiento.py".
+4.- Ejecutar el archivo CrearRed.py".
     Comentario 1: Esto generará el archivo "RNAFresa.tmt".
 5.- Mover el archivo "RNAFresa.tmt" a la carpeta "Entrenada"
 6.- Ejecutar el archivo "Interfaz.py".
