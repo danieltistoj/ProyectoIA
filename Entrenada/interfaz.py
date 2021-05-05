@@ -1,59 +1,40 @@
-import tkinter
+import cv2
+from PIL import Image as Img
+from PIL import ImageTk
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
-from PIL import Image, ImageOps
-import validar
-import numpy as np
+import imutils
+import Comprobar as c
 
-class GUI(Frame):
-	ruta='/'
-	im = None
-	ann = None
-	def __init__(self,master=None):
-		Frame.__init__(self)
-		self.ann = validar.cargarRed() ##### Cargamos el archivo generado en la carpeta de entramiento #####
-		##### Buscamos la fotografía que queremos #####
-		def btnaceptarClick():
-			root.filename = filedialog.askopenfilename(initialdir = "\Desktop", title = "Buscar imagen",filetypes = (("jpeg files","*.jpg | *.jpeg | *.png"),("all files","*.*")))
-			self.ruta=root.filename
-			if(self.im != None):
-				messagebox.showinfo('¡ERROR!',"Imagen no aceptada...")
-				self.im.close()
-			messagebox.showinfo('¡CORRECTO!',"Imagen aceptada correctamente")
-		
-		def hola():
-			if(self.ruta!=None):
-				origin = validar.validar(self.ruta,self.ann)
-				ron= [ round(num,0) for num in origin]
-				print (ron)
-				if np.sum(ron)>1 or np.sum(ron)==0 :
-					messagebox.showinfo('¡ERROR!',"No se reconoce la imagen...")
-				else:
-					if ron[0]==1:
-						messagebox.showinfo('Fresa',"Fresa Inmadura")
-					elif ron[1]==1:
-						messagebox.showinfo('Fresa',"Fresa Madura")
-					elif ron[2]==1:
-						messagebox.showinfo('Fresa',"Fresa Pasada")
-					else:
-						messagebox.showinfo('¡ERROR!',"La imagen no es de una fresa o no es una fresa recortada")
-		def imagenAEpisodio(imagen):
-			image = Image.open(imagen)
-			pixeles = list(image.getdata())
-			lista=[]
-			for x in pixeles:
-				lista.append(x[0])
-				lista.append(x[1])
-				lista.append(x[2])
-			return lista
-		self.btnaceptar = Button(root, command=btnaceptarClick, text="Buscar Imagen")
-		self.btnaceptar.pack(fill=X,pady=10,padx=100)
-		self.boton = Button(root,command=hola,text="Validar Imagen")
-		self.boton.pack(fill=X,pady=10,padx=100)
+def elegir_imagen():
+    path_image = filedialog.askopenfilename(initialdir = "\Desktop", title = "Buscar imagen",filetypes = (("jpeg files","*.jpg | *.jpeg | *.png"),("all files","*.*")))
+    if len(path_image) > 0:
+        global image
+        # Leer la imagen de entrada y la redimensionamos
+        image = cv2.imread(path_image)
+        image = imutils.resize(image, height=380)
+        # Para visualizar la imagen de entrada en la GUI
+        imageToShow= imutils.resize(image, width=180)
+        imageToShow = cv2.cvtColor(imageToShow, cv2.COLOR_BGR2RGB)
+        im = Img.fromarray(imageToShow )
+        img = ImageTk.PhotoImage(image=im)
+        lblInputImage.configure(image=img)
+        lblInputImage.image = img
+        # Label IMAGEN DE ENTRADA
+        #print(c.fotoComp(path_image))
+        lblInfo1 = Label(root, text="Imagen Seleccionada:")
+        lblInfo1.grid(column=0, row=1, padx=5, pady=5)
+        messagebox.showinfo("¡Fresa encontrada!", c.fotoComp(path_image))
+        #print(path_image)
+
+# Creamos la ventana principal
 root = Tk()
-root.title("Red #2")
-root.resizable(width=FALSE, height=FALSE)
-guiframe=GUI(root)
-guiframe.pack()
+root.title("RF")
+# Label donde se presentará la imagen de entrada
+lblInputImage = Label(root)
+lblInputImage.grid(column=0, row=2)
+# Creamos el botón para elegir la imagen de entrada
+btn = Button(root, text="Cargar fotografía", width=25, command=elegir_imagen)
+btn.grid(column=0, row=0, padx=5, pady=5)
 root.mainloop()
