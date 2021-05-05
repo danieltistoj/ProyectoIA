@@ -1,0 +1,37 @@
+##### Instrucciones para entrenar la RNA #####
+##### Reconocer el nivel de madurez de una fresa cortada a la mitad #####
+
+Como podra observar, se encuentran 2 carpetas, "Entrenada" y "Entrenamiento", para comprobar el programa deberá seguir los siguientes pasos:
+
+1.- Debe dirigirse a la carpeta "Entrenamiento".
+
+    Clasificación de fotografías:
+
+    A.- Para que el programa pueda funcionar, las fotografias de las fresas deben de seguir un orden:
+        I.-   Las fresas deben de estar cortadas a la mitad. 
+        II.-  Colocar la mitad de la fresa en un lugar donde haya buena iluminación o bien utilizar flash.
+        III.- Evitar los fondos coloridos, de prefefencia un fondo color blanco.
+        IV.-  Evitar las sombras lo más posible .
+        V.-   Se puede tomar la foto encuadrando la mitad de la fresa o bien un poco alejada.
+        VI.- Colocar las fresas a la mitad dependiendo de su madurez en las carpetas que acontinuación se describe. 
+    B.- Se deben clasificar las fotografías deseadas en 3 carpetas: 
+        "FresasInmaduras", "FresasMaduras" y "FresasPasadas". 
+        Comentario 1: En este, caso estas carpetas ya incluyen algunas fotografías para poder entrenar la RNA.
+        Comentario 2: Además de las carpetas anteriormente mencionadas, hay 3 carpetas vacias adicionales para tener un total de 6 carpetas, estas carpetas adicionales llevan los nombres:
+                      "FresasRecortadasI", "FresasRecortadasM" y "FresasRecortadasP".
+
+2.- Ejecutar el archivo "RecorteFotos.py".
+    Comentario 1: Esto generará imagenes en las carpetas "FresasRecortadasI", "FresasRecortadasM" y "FresasRecortadasP".
+3.- Ejecutar el archivo "Entradas.py".
+    Comentario 1: Esto generará el archivo "Entrenamiento.csv".
+4.- Ejecutar el archivo CrearRed.py".
+    Comentario 1: Esto generará el archivo "RNAFresa.tmt".
+5.- Mover el archivo "RNAFresa.tmt" a la carpeta "Entrenada"
+6.- Ejecutar el archivo "Interfaz.py".
+    Comentario 1: Este programa solicitará que busque una fotografía para poder analizarla; se encuentran fotografías enúmeradas para realizar estas pruebas, estas se pueden encontrar en la carpeta llamada "Fotografias".
+    Comentario 3: Esto generará los archivos "RecorteFresaPrueba.jpg" y "PruebaFresa.csv".
+    Comentario 4: Este programa retornara si la fotografía de la fresa cortada a la mitad esta madura, inmadura o pasada.
+
+
+Osmar Danilo López Batres -  1592615
+José Daniel Tistoj Reyes  -  1648817
